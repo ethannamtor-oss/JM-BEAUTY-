@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JM Scents & Beauty | Curated Luxury Fragrances</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            cream: '#FDFBF7',
+                            plum: '#4A1525',
+                            rose: '#C89B7B',
+                            roseHover: '#b08566',
+                            dark: '#1A1A1A',
+                            lightGray: '#F3F4F6'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Cormorant Garamond', 'serif'],
+                        sans: ['Jost', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(0,0,0,0.08)',
+                        'glow': '0 0 20px rgba(200, 155, 123, 0.4)'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #FDFBF7; color: #1A1A1A; }
+        .glass-nav {
+            background: rgba(253, 251, 247, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .product-card:hover .product-img { transform: scale(1.08); }
+        .product-img { transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        
+        /* Image mask for hero */
+        .hero-mask {
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            overflow: hidden;
+        }
+        
+        .fade-in { animation: fadeIn 1s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="font-sans antialiased text-brand-dark overflow-x-hidden selection:bg-brand-rose selection:text-white">
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-brand-plum text-brand-cream text-center py-2 text-xs tracking-[0.2em] uppercase font-medium">
+        Free Delivery on orders above ₦50,000 within Lagos
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4 glass-nav">
+        <div class="container mx-auto px-6 md:px-12 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="flex flex-col items-center">
+                <span class="text-2xl md:text-3xl font-serif font-bold tracking-widest text-brand-plum">JM SCENTS</span>
+                <span class="text-[0.6rem] md:text-xs tracking-[0.3em] uppercase font-medium text-brand-rose">& Beauty</span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden lg:flex space-x-10 items-center text-sm tracking-widest uppercase font-medium text-brand-dark/80">
+                <a href="#home" class="hover:text-brand-rose transition">Home</a>
+                <a href="#collection" class="hover:text-brand-rose transition">Collection</a>
+                <a href="#about" class="hover:text-brand-rose transition">The Brand</a>
+                <a href="#faq" class="hover:text-brand-rose transition">FAQ</a>
+            </div>
+
+            <!-- Header CTA -->
+            <div class="hidden lg:block">
+                <a href="https://wa.me/2348021312586?text=Hello%20JM%20Scents%20and%20Beauty,%20I%20would%20like%20to%20make%20an%20enquiry." target="_blank" class="flex items-center space-x-2 bg-brand-plum text-white px-7 py-3 rounded-full font-medium hover:bg-brand-rose transition duration-300 shadow-soft">
+                    <i class="fab fa-whatsapp text-lg"></i>
+                    <span>Order Now</span>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobile-menu-btn" class="lg:hidden text-2xl text-brand-plum focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-brand-cream border-t border-gray-100 absolute w-full left-0 top-full shadow-xl">
+            <a href="#home" class="block px-6 py-4 border-b border-gray-100 font-medium hover:text-brand-rose transition">Home</a>
+            <a href="#collection" class="block px-6 py-4 border-b border-gray-100 font-medium hover:text-brand-rose transition">Collection</a>
+            <a href="#about" class="block px-6 py-4 border-b border-gray-100 font-medium hover:text-brand-rose transition">The Brand</a>
+            <a href="#faq" class="block px-6 py-4 border-b border-gray-100 font-medium hover:text-brand-rose transition">FAQ</a>
+            <a href="https://wa.me/2348021312586" target="_blank" class="block px-6 py-5 bg-brand-plum text-white font-medium text-center"><i class="fab fa-whatsapp mr-2"></i> Order on WhatsApp</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 bg-brand-cream overflow-hidden">
+        <!-- Background Decorative Elements -->
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-brand-lightGray/50 rounded-l-full -z-10 translate-x-1/4"></div>
+        <div class="absolute -top-20 -left-20 w-96 h-96 bg-brand-rose/10 rounded-full blur-3xl -z-10"></div>
+
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-16">
+                
+                <!-- Hero Text -->
+                <div class="lg:w-1/2 text-center lg:text-left fade-in">
+                    <span class="text-brand-rose uppercase tracking-[0.25em] font-semibold text-sm mb-4 block">Curated Luxury Fragrances</span>
+                    <h1 class="text-5xl md:text-7xl font-serif font-bold text-brand-plum mb-6 leading-[1.1]">
+                        Define Your <br> Presence.
+                    </h1>
+                    <p class="text-gray-600 text-lg mb-10 max-w-lg mx-auto lg:mx-0 font-light leading-relaxed">
+                        Discover a collection of premium, long-lasting perfumes designed to leave an unforgettable trail. From designer originals to niche masterpieces.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-4">
+                        <a href="#collection" class="w-full sm:w-auto px-8 py-4 bg-brand-plum text-white font-medium uppercase tracking-wider text-sm hover:bg-brand-rose transition duration-300 rounded-sm shadow-lg">
+                            Shop The Collection
+                        </a>
+                        <a href="https://wa.me/2348021312586?text=Hello,%20I%20am%20looking%20for%20a%20specific%20perfume,%20can%20you%20help?" target="_blank" class="w-full sm:w-auto px-8 py-4 border border-brand-plum text-brand-plum font-medium uppercase tracking-wider text-sm hover:bg-brand-plum hover:text-white transition duration-300 rounded-sm flex items-center justify-center">
+                            <i class="fab fa-whatsapp mr-2 text-lg"></i> Request Custom Scent
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hero Image -->
+                <div class="lg:w-1/2 relative flex justify-center">
+                    <!-- Main Image -->
+                    <div class="relative w-4/5 md:w-2/3 lg:w-full max-w-md aspect-[4/5] hero-mask shadow-2xl z-10 border-4 border-white">
+                        <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=1000&auto=format&fit=crop" alt="Luxury Perfume" class="w-full h-full object-cover">
+                    </div>
+                    <!-- Floating element -->
+                    <div class="absolute -bottom-6 -left-6 md:-left-12 bg-white p-5 rounded-lg shadow-xl z-20 flex items-center gap-4 animate-bounce" style="animation-duration: 3s;">
+                        <div class="w-12 h-12 bg-brand-rose/20 rounded-full flex items-center justify-center text-brand-rose">
+                            <i class="fas fa-certificate text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm font-bold text-brand-plum">100% Authentic</p>
+                            <p class="text-xs text-gray-500">Guaranteed Quality</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Trust Badges -->
+    <section class="py-8 bg-white border-y border-gray-100">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-wrap justify-center md:justify-between items-center gap-8 opacity-70 grayscale hover:grayscale-0 transition duration-500">
+                <div class="flex items-center gap-2"><i class="fas fa-truck-fast text-2xl text-brand-plum"></i> <span class="font-medium">Nationwide Delivery</span></div>
+                <div class="flex items-center gap-2"><i class="fas fa-gem text-2xl text-brand-plum"></i> <span class="font-medium">Premium Selection</span></div>
+                <div class="flex items-center gap-2"><i class="fas fa-headset text-2xl text-brand-plum"></i> <span class="font-medium">Expert Consultation</span></div>
+                <div class="flex items-center gap-2"><i class="fas fa-box-open text-2xl text-brand-plum"></i> <span class="font-medium">Secure Packaging</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Collection Section -->
+    <section id="collection" class="py-24 bg-brand-cream">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-serif font-bold text-brand-plum mb-4">The Signature Edit</h2>
+                <div class="w-16 h-[2px] bg-brand-rose mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto">Handpicked fragrances for the discerning individual. Click any item to order directly via WhatsApp.</p>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+                
+                <!-- Product 1 (Based on image: Marc Jacobs Perfect) -->
+                <div class="bg-white rounded-xl shadow-soft hover:shadow-xl transition duration-500 product-card group flex flex-col h-full relative overflow-hidden">
+                    <div class="absolute top-4 right-4 z-10 bg-brand-plum text-white text-[0.65rem] font-bold px-2 py-1 uppercase tracking-wider rounded">Hot Seller</div>
+                    <div class="relative h-72 overflow-hidden bg-gray-50 flex items-center justify-center p-4">
+                        <img src="https://images.unsplash.com/photo-1592914610354-fd354ea45e48?q=80&w=800&auto=format&fit=crop" alt="Perfect Marc Jacobs" class="w-full h-full object-contain product-img mix-blend-multiply">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow text-center">
+                        <p class="text-xs text-brand-rose font-semibold uppercase tracking-widest mb-2">Designer Original</p>
+                        <h3 class="text-2xl font-serif font-bold text-brand-plum mb-2">Perfect</h3>
+                        <p class="text-gray-500 text-sm mb-6 flex-grow">Rhubarb, Narcissus & Almond Milk. A playful, bright & elegant scent.</p>
+                        <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
+                            <span class="text-lg font-bold text-brand-dark">₦45,000</span>
+                            <a href="https://wa.me/2348021312586?text=Hello%20JM%20Scents,%20I%20want%20to%20order%20the%20Perfect%20by%20Marc%20Jacobs.%20Is%20it%20available?" target="_blank" class="bg-brand-rose text-white hover:bg-brand-plum px-4 py-2 rounded text-sm font-medium transition duration-300 flex items-center gap-2">
+                                <i class="fab fa-whatsapp"></i> Order
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 (Based on image: 64 Karat) -->
+                <div class="bg-white rounded-xl shadow-soft hover:shadow-xl transition duration-500 product-card group flex flex-col h-full relative overflow-hidden">
+                    <div class="relative h-72 overflow-hidden bg-gray-50 flex items-center justify-center p-4">
+                        <img src="https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?q=80&w=800&auto=format&fit=crop" alt="64 Karat" class="w-full h-full object-contain product-img mix-blend-multiply">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow text-center">
+                        <p class="text-xs text-brand-rose font-semibold uppercase tracking-widest mb-2">Extrait de Parfum</p>
+                        <h3 class="text-2xl font-serif font-bold text-brand-plum mb-2">64 Karat</h3>
+                        <p class="text-gray-500 text-sm mb-6 flex-grow">A rich, oriental blend. Intense projection and exceptional longevity.</p>
+                        <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
+                            <span class="text-lg font-bold text-brand-dark">₦35,000</span>
+                            <a href="https://wa.me/2348021312586?text=Hello%20JM%20Scents,%20I%20am%20interested%20in%20the%2064%20Karat%20Perfume.%20Please%20give%20me%20more%20details." target="_blank" class="bg-brand-rose text-white hover:bg-brand-plum px-4 py-2 rounded text-sm font-medium transition duration-300 flex items-center gap-2">
+                                <i class="fab fa-whatsapp"></i> Order
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 (Sample Vials / Discovery Set) -->
+                <div class="bg-white rounded-xl shadow-soft hover:shadow-xl transition duration-500 product-card group flex flex-col h-full relative overflow-hidden">
+                    <div class="absolute top-4 right-4 z-10 bg-brand-rose text-white text-[0.65rem] font-bold px-2 py-1 uppercase tracking-wider rounded">Best Value</div>
+                    <div class="relative h-72 overflow-hidden bg-gray-50 flex items-center justify-center p-4">
+                        <img src="https://images.unsplash.com/photo-1615634260167-c8cdede054de?q=80&w=800&auto=format&fit=crop" alt="Discovery Set" class="w-full h-full object-contain product-img mix-blend-multiply">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow text-center">
+                        <p class="text-xs text-brand-rose font-semibold uppercase tracking-widest mb-2">Try Before You Buy</p>
+                        <h3 class="text-2xl font-serif font-bold text-brand-plum mb-2">Discovery Set</h3>
+                        <p class="text-gray-500 text-sm mb-6 flex-grow">Get 5 assorted sample vials of our best-selling fragrances to find your match.</p>
+                        <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
+                            <span class="text-lg font-bold text-brand-dark">₦15,000</span>
+                            <a href="https://wa.me/2348021312586?text=Hello%20JM%20Scents,%20I%20would%20like%20to%20order%20the%20Discovery%20Sample%20Set." target="_blank" class="bg-brand-rose text-white hover:bg-brand-plum px-4 py-2 rounded text-sm font-medium transition duration-300 flex items-center gap-2">
+                                <i class="fab fa-whatsapp"></i> Order
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 (Generic Niche/Unisex) -->
+                <div class="bg-white rounded-xl shadow-soft hover:shadow-xl transition duration-500 product-card group flex flex-col h-full relative overflow-hidden">
+                    <div class="relative h-72 overflow-hidden bg-gray-50 flex items-center justify-center p-4">
+                        <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?q=80&w=800&auto=format&fit=crop" alt="Oud & Rose" class="w-full h-full object-contain product-img mix-blend-multiply">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow text-center">
+                        <p class="text-xs text-brand-rose font-semibold uppercase tracking-widest mb-2">Unisex Niche</p>
+                        <h3 class="text-2xl font-serif font-bold text-brand-plum mb-2">Oud & Rose</h3>
+                        <p class="text-gray-500 text-sm mb-6 flex-grow">A sophisticated, timeless blend of premium Oud and Damask Rose.</p>
+                        <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
+                            <span class="text-lg font-bold text-brand-dark">₦55,000</span>
+                            <a href="https://wa.me/2348021312586?text=Hello%20JM%20Scents,%20I%20want%20to%20order%20the%20Oud%20and%20Rose%20perfume." target="_blank" class="bg-brand-rose text-white hover:bg-brand-plum px-4 py-2 rounded text-sm font-medium transition duration-300 flex items-center gap-2">
+                                <i class="fab fa-whatsapp"></i> Order
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="text-center mt-20">
+                <a href="https://wa.me/2348021312586?text=Hello%20JM%20Scents,%20please%20send%20me%20your%20full%20catalog." target="_blank" class="inline-block border-2 border-brand-plum text-brand-plum px-10 py-4 font-semibold uppercase tracking-widest text-sm hover:bg-brand-plum hover:text-white transition duration-300 shadow-sm">
+                    View Full Catalog on WhatsApp <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof / Testimonials -->
+    <section class="py-20 bg-brand-plum text-white">
+        <div class="container mx-auto px-6 md:px-12 text-center">
+            <i class="fas fa-quote-left text-4xl text-brand-rose/50 mb-6"></i>
+            <h2 class="text-3xl md:text-4xl font-serif mb-12">What Our Clients Say</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+                <!-- Testimonial 1 -->
+                <div class="bg-white/5 p-8 rounded-lg border border-white/10">
+                    <div class="flex text-brand-rose mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-300 italic mb-6">"I ordered the 64 Karat and I am blown away. The projection is insane and it lasted over 12 hours on my skin. JM Scents is now my plug!"</p>
+                    <p class="font-bold text-brand-rose tracking-wider uppercase text-sm">- Chidi O.</p>
+                </div>
+                <!-- Testimonial 2 -->
+                <div class="bg-white/5 p-8 rounded-lg border border-white/10">
+                    <div class="flex text-brand-rose mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-300 italic mb-6">"Their customer service on WhatsApp is top tier. They helped me pick the Perfect by Marc Jacobs and packaged it beautifully. Fast delivery too."</p>
+                    <p class="font-bold text-brand-rose tracking-wider uppercase text-sm">- Amina B.</p>
+                </div>
+                <!-- Testimonial 3 -->
+                <div class="bg-white/5 p-8 rounded-lg border border-white/10">
+                    <div class="flex text-brand-rose mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-300 italic mb-6">"I bought the discovery set before committing to a full bottle. Best decision ever. 100% authentic fragrances. Highly recommended."</p>
+                    <p class="font-bold text-brand-rose tracking-wider uppercase text-sm">- Tunde A.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section (Conversion Booster) -->
+    <section id="faq" class="py-24 bg-white">
+        <div class="container mx-auto px-6 md:px-12 max-w-4xl">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-plum mb-4">Frequently Asked Questions</h2>
+                <p class="text-gray-500">Everything you need to know before placing your order.</p>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <div class="border border-gray-200 rounded-lg p-6 hover:shadow-soft transition bg-brand-cream">
+                    <h3 class="font-bold text-lg text-brand-plum mb-2">How do I place an order?</h3>
+                    <p class="text-gray-600">Simply click the "Order" button on any product, or click the WhatsApp icon at the bottom right. It will open a chat with us directly. We handle all orders personally via WhatsApp.</p>
+                </div>
+                <!-- FAQ Item 2 -->
+                <div class="border border-gray-200 rounded-lg p-6 hover:shadow-soft transition bg-brand-cream">
+                    <h3 class="font-bold text-lg text-brand-plum mb-2">Are your perfumes authentic?</h3>
+                    <p class="text-gray-600">Yes, 100%. We source our designer perfumes directly from authorized distributors, and our niche/extrait blends are crafted with premium, high-concentration oils.</p>
+                </div>
+                <!-- FAQ Item 3 -->
+                <div class="border border-gray-200 rounded-lg p-6 hover:shadow-soft transition bg-brand-cream">
+                    <h3 class="font-bold text-lg text-brand-plum mb-2">Do you deliver nationwide?</h3>
+                    <p class="text-gray-600">Yes, we deliver to all states in Nigeria. Delivery within Lagos takes 24-48 hours, while other states take 2-4 working days. Payment is required before dispatch.</p>
+                </div>
+                <!-- FAQ Item 4 -->
+                <div class="border border-gray-200 rounded-lg p-6 hover:shadow-soft transition bg-brand-cream">
+                    <h3 class="font-bold text-lg text-brand-plum mb-2">Can I buy sample sizes first?</h3>
+                    <p class="text-gray-600">Absolutely. We highly recommend our Discovery Sample Set. It's the best way to test the longevity and scent profile on your skin before investing in a full bottle.</p>
+                </div>
+            </div>
+
+            <div class="mt-12 text-center">
+                <p class="text-gray-600 mb-4">Still have questions?</p>
+                <a href="https://wa.me/2348021312586?text=Hello%20JM%20Scents,%20I%20have%20a%20question%20about%20your%20products." target="_blank" class="text-brand-plum font-bold text-lg hover:text-brand-rose transition underline decoration-brand-rose underline-offset-4">
+                    Chat with us right now <i class="fab fa-whatsapp ml-1"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-dark text-gray-400 py-16 border-t-4 border-brand-rose">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
+                
+                <!-- Brand Info -->
+                <div class="md:col-span-1">
+                    <h3 class="text-3xl font-serif font-bold text-white mb-2 tracking-widest">JM SCENTS</h3>
+                    <p class="text-xs tracking-[0.3em] uppercase font-medium text-brand-rose mb-6">& Beauty Ltd.</p>
+                    <p class="text-sm leading-relaxed mb-6">Your trusted partner for authentic, luxury fragrances. Elevating your everyday scent experience.</p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-white font-bold mb-6 uppercase tracking-wider text-sm">Explore</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#collection" class="hover:text-brand-rose transition">Shop Perfumes</a></li>
+                        <li><a href="#about" class="hover:text-brand-rose transition">About Us</a></li>
+                        <li><a href="#faq" class="hover:text-brand-rose transition">Delivery & Returns</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-white font-bold mb-6 uppercase tracking-wider text-sm">Contact Us</h4>
+                    <ul class="space-y-4 text-sm flex flex-col items-center md:items-start">
+                        <li class="flex items-center">
+                            <i class="fab fa-whatsapp mr-3 text-brand-rose text-xl"></i>
+                            <a href="https://wa.me/2348021312586" target="_blank" class="hover:text-white transition font-medium">+234 802 131 2586</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-brand-rose"></i>
+                            <span>hello@jmscents.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-map-marker-alt mr-3 text-brand-rose"></i>
+                            <span>Lagos, Nigeria</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
+                <p>&copy; <span id="year"></span> Jenny's Meilleure-Coh Ltd (JM Scents & Beauty). All rights reserved.</p>
+                <p class="mt-2 md:mt-0">Premium Digital Experience</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/2348021312586?text=Hello%20JM%20Scents%20and%20Beauty!" target="_blank" class="fixed bottom-6 right-6 bg-[#25D366] text-white w-16 h-16 rounded-full flex items-center justify-center text-3xl shadow-[0_0_20px_rgba(37,211,102,0.4)] hover:bg-[#128C7E] hover:scale-110 transition duration-300 z-50 group">
+        <i class="fab fa-whatsapp group-hover:animate-ping absolute"></i>
+        <i class="fab fa-whatsapp relative"></i>
+    </a>
+
+    <!-- JavaScript -->
+    <script>
+        // Set Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const icon = btn.querySelector('i');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            if (menu.classList.contains('hidden')) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            }
+        });
+
+        // Close menu on link click
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+
+        // Navbar shadow on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 20) {
+                navbar.classList.add('shadow-md');
+                navbar.classList.remove('py-4');
+                navbar.classList.add('py-2');
+            } else {
+                navbar.classList.remove('shadow-md');
+                navbar.classList.add('py-4');
+                navbar.classList.remove('py-2');
+            }
+        });
+    </script>
+</body>
+</html>
